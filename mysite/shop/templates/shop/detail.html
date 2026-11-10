@@ -1,0 +1,11 @@
+{% load static %}
+
+<h1>{{ product.name }}</h1>
+
+<img src="{{ product.image.url }}" width="300">
+
+<p>Prix: {{ product.price }} MAD</p>
+
+<p>{{ product.description }}</p>
+
+<a href="/">⬅ Retour</a>

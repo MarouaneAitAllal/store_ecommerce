@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  {% load static %}
+  <meta charset="UTF-8">
+  <title>Checkout</title>
+  <link rel="stylesheet" href="{% static 'shop/ecommerce.css' %}">
+</head>
+
+<body>
+
+<div class="checkout-container">
+
+  <!-- LEFT: PRODUITS -->
+  <div class="checkout-left">
+    <h2>Votre commande</h2>
+
+    {% for product in products %}
+    <div class="checkout-item">
+
+      <img src="{{ product.image.url }}" alt="">
+
+      <div class="item-info">
+        <h3>{{ product.name }}</h3>
+        <p>Quantité: {{ product.quantity }}</p>
+      </div>
+
+      <div class="item-price">
+        {{ product.total_price }} MAD
+      </div>
+
+    </div>
+    {% endfor %}
+
+  </div>
+
+  <!-- RIGHT: FORM + TOTAL -->
+  <div class="checkout-right">
+
+    <h2>Paiement</h2>
+
+    <form method="POST" class="checkout-form">
+      {% csrf_token %}
+
+      <input type="text" name="name" placeholder="Nom complet" required>
+      <input type="text" name="phone" placeholder="Téléphone" required>
+      <textarea name="address" placeholder="Adresse" required></textarea>
+
+      <div class="total-box">
+        <span>Total</span>
+        <strong>{{ total }} MAD</strong>
+      </div>
+
+      <button type="submit">Commander</button>
+    </form>
+
+  </div>
+
+
+</body>
+</body>
+</html>

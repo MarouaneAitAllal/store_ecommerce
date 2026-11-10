@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Commande confirmée</title>
+
+  <link rel="stylesheet" href="{% static 'shop/ecommerce.css' %}">
+</head>
+
+<body>
+
+<div class="success-container">
+  <div class="success-box">
+    <h1>Commande confirmée</h1>
+
+    <p>Merci pour votre achat</p>
+    <p>Votre commande a été enregistrée avec succès.</p>
+
+    <a href="{% url 'home' %}" class="btn-home">
+      Retour à la boutique
+    </a>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,48 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'shop/ecommerce.css' %}">
+
+<div class="profile-container">
+
+    <h2>Mon Profil</h2>
+
+    <!-- USER INFO -->
+    <div class="profile-card">
+        <p><strong>Username:</strong> {{ request.user.username }}</p>
+    </div>
+
+    <!-- ORDERS -->
+    <h3>Mes commandes</h3>
+
+    <div class="orders-grid">
+        {% for order in orders %}
+        <div class="order-card">
+
+            <p><strong>ID:</strong> {{ order.id }}</p>
+            <p><strong>Date:</strong> {{ order.created_at }}</p>
+            <p class="status {{ order.status }}">{{ order.status }}</p>
+            <p><strong>Total:</strong> {{ order.total }} MAD</p>
+
+            <!-- 🔥 DETAILS DIRECT -->
+            <div style="margin-top:10px;">
+                <strong>Produits:</strong>
+
+                <ul>
+                    {% for item in order.orderitem_set.all %}
+                        <li>
+                            {{ item.product.name }}  
+                            (x{{ item.quantity }}) - 
+                            {{ item.price }} MAD
+                        </li>
+                    {% empty %}
+                        <li>Aucun produit</li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+        </div>
+        {% empty %}
+            <p>Aucune commande</p>
+        {% endfor %}
+    </div>
+
+</div>
